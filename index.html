@@ -1,185 +1,1268 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noel</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giáng Sinh Lung Linh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(to top, #1e3c72 0%, #2a5298 100%);
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .merry-christmas {
+      font-family: 'Pacifico', cursive;
+      color: #fff;
+      text-shadow: 0 0 20px #e60073, 0 0 40px #fff;
+      font-size: 3rem;
+      text-align: center;
+      margin-top: 40px;
+      letter-spacing: 2px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 20px #e60073, 0 0 40px #fff;
+      }
+
+      to {
+        text-shadow: 0 0 40px #fff, 0 0 80px #e60073;
+      }
+    }
+
+    .scene {
+      position: relative;
+      width: 100vw;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 1;
+    }
+
+    .ground {
+      width: 100vw;
+      height: 120px;
+      background: linear-gradient(to top, #fff 80%, #e0e0e0 100%);
+      border-top-left-radius: 100px 40px;
+      border-top-right-radius: 100px 40px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .tree {
+      position: absolute;
+      bottom: 120px;
+      left: 10vw;
+      width: clamp(60px, 13vw, 120px);
+      height: clamp(90px, 20vw, 180px);
+      z-index: 3;
+      animation: tree-swing 3s infinite ease-in-out alternate;
+      filter: drop-shadow(0 8px 24px #0006);
+    }
+
+    .tree2 {
+      left: 80vw;
+      animation-delay: 1.5s;
+      filter: drop-shadow(0 8px 24px #0006);
+    }
+
+    @keyframes tree-swing {
+      0% {
+        transform: rotate(-2deg);
+      }
+
+      100% {
+        transform: rotate(2deg);
+      }
+    }
+
+    .tree .star {
+      position: absolute;
+      top: -2.2vw;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(18px, 2.2vw, 36px);
+      color: gold;
+      filter: drop-shadow(0 0 8px gold);
+      animation: star-glow 1.2s infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes star-glow {
+      from {
+        filter: drop-shadow(0 0 8px gold);
+      }
+
+      to {
+        filter: drop-shadow(0 0 20px #fff);
+      }
+    }
+
+    .tree .bauble {
+      position: absolute;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, #fff 30%, #e60073 100%);
+      box-shadow: 0 0 16px 4px #fff, 0 0 24px 8px #ffd70044;
+      animation: bauble-blink 1.2s infinite alternate, bauble-glow 2s infinite alternate;
+    }
+
+    @keyframes bauble-blink {
+      from {
+        filter: brightness(1);
+      }
+
+      to {
+        filter: brightness(2);
+      }
+    }
+
+    @keyframes bauble-glow {
+      from {
+        filter: brightness(1.2) drop-shadow(0 0 8px #fff);
+      }
+
+      to {
+        filter: brightness(2) drop-shadow(0 0 24px #ffd700);
+      }
+    }
+
+    .tree .bauble1 {
+      top: 40px;
+      left: 30px;
+      background: #e60073;
+      animation-delay: 0.2s;
+    }
+
+    .tree .bauble2 {
+      top: 60px;
+      left: 50px;
+      background: #ffd700;
+      animation-delay: 0.5s;
+    }
+
+    .tree .bauble3 {
+      top: 80px;
+      left: 20px;
+      background: #00e6e6;
+      animation-delay: 0.8s;
+    }
+
+    .tree .bauble4 {
+      top: 100px;
+      left: 60px;
+      background: #00ff00;
+      animation-delay: 1.1s;
+    }
+
+    .house {
+      position: absolute;
+      left: 50%;
+      bottom: 120px;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 120px;
+      z-index: 4;
+      animation: house-pop 1.5s cubic-bezier(.68, -0.55, .27, 1.55) 1;
+      filter: drop-shadow(0 8px 24px #0006);
+    }
+
+    @keyframes house-pop {
+      0% {
+        transform: translateX(-50%) scale(0.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .house-body {
+      width: 100%;
+      height: 70px;
+      background: #fff8e1;
+      border: 3px solid #b97a56;
+      border-radius: 0 0 20px 20px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      box-shadow: 0 8px 24px #b97a56a0;
+    }
+
+    .house-roof {
+      width: 120%;
+      height: 40px;
+      background: #b71c1c;
+      position: absolute;
+      top: -30px;
+      left: -10%;
+      border-radius: 30px 30px 0 0;
+      box-shadow: 0 4px 16px #b71c1c80;
+      z-index: 2;
+    }
+
+    .house-snow {
+      position: absolute;
+      top: -32px;
+      left: -12px;
+      width: 204px;
+      height: 22px;
+      background: #fff;
+      border-radius: 30px 30px 20px 20px;
+      z-index: 3;
+      box-shadow: 0 2px 8px #fff8;
+    }
+
+    .house-chimney {
+      position: absolute;
+      top: -38px;
+      left: 30px;
+      width: 22px;
+      height: 38px;
+      background: #8d5524;
+      border-radius: 6px 6px 2px 2px;
+      box-shadow: 0 2px 8px #0004;
+      z-index: 4;
+    }
+
+    .house-smoke {
+      position: absolute;
+      top: -60px;
+      left: 38px;
+      width: 40px;
+      height: 40px;
+      z-index: 5;
+    }
+
+    .smoke {
+      position: absolute;
+      left: 10px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: smoke-move 3s infinite linear;
+    }
+
+    .smoke1 {
+      top: 20px;
+      animation-delay: 0s;
+    }
+
+    .smoke2 {
+      top: 10px;
+      left: 18px;
+      animation-delay: 0.7s;
+    }
+
+    .smoke3 {
+      top: 0px;
+      left: 5px;
+      animation-delay: 1.4s;
+    }
+
+    @keyframes smoke-move {
+      0% {
+        opacity: 0.7;
+        transform: scale(1) translateY(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-30px);
+      }
+    }
+
+    .house-door {
+      width: 32px;
+      height: 40px;
+      background: #8d5524;
+      border-radius: 8px 8px 12px 12px;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      border: 2px solid #5c3310;
+    }
+
+    .house-window {
+      width: 28px;
+      height: 28px;
+      background: #b3e5fc;
+      border-radius: 50%;
+      position: absolute;
+      left: 25px;
+      top: 30px;
+      border: 2px solid #0288d1;
+      box-shadow: 0 0 24px 8px #fff, 0 0 40px 16px #ffd70044;
+      animation: window-glow 1.5s infinite alternate;
+    }
+
+    .house-window2 {
+      left: 125px;
+      top: 30px;
+      box-shadow: 0 0 24px 8px #fff, 0 0 40px 16px #ffd70044;
+      animation: window-glow 1.5s infinite alternate;
+    }
+
+    @keyframes window-glow {
+      from {
+        box-shadow: 0 0 10px #fff;
+      }
+
+      to {
+        box-shadow: 0 0 30px #fff, 0 0 10px #ffd700;
+      }
+    }
+
+    .gift {
+      position: absolute;
+      left: 68%;
+      /* Dịch sang phải thêm */
+      bottom: 120px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #e60073 60%, #ffd700 100%);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px #e60073a0, 0 0 16px #ffd70080;
+      z-index: 5;
+      animation: gift-bounce 1.2s infinite alternate;
+      border: 2.5px solid #fff;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+
+    .gift:hover {
+      box-shadow: 0 0 32px 8px #ffd700, 0 0 24px #e60073a0;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .gift::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0;
+      width: 6px;
+      height: 50px;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 0 8px #ffd700;
+    }
+
+    .gift::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 0;
+      width: 50px;
+      height: 6px;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 0 8px #ffd700;
+    }
+
+    .gift-lid {
+      position: absolute;
+      left: 0;
+      top: -10px;
+      width: 50px;
+      height: 16px;
+      background: linear-gradient(90deg, #ffd700 60%, #e60073 100%);
+      border-radius: 8px 8px 6px 6px;
+      z-index: 2;
+      box-shadow: 0 0 8px #ffd70080;
+      animation: lid-wiggle 1.5s infinite alternate;
+    }
+
+    @keyframes lid-wiggle {
+      0% {
+        transform: rotate(-2deg);
+      }
+
+      100% {
+        transform: rotate(2deg);
+      }
+    }
+
+    @keyframes gift-bounce {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-18px);
+      }
+    }
+
+    .snowman {
+      position: absolute;
+      left: 30vw;
+      bottom: 120px;
+      width: 70px;
+      height: 100px;
+      z-index: 6;
+      animation: snowman-pop 1.2s cubic-bezier(.68, -0.55, .27, 1.55) 1;
+      filter: drop-shadow(0 8px 24px #0006);
+    }
+
+    @keyframes snowman-pop {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .snowman-body {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .snowman-head {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 50%;
+      border: 2px solid #eee;
+    }
+
+    .snowman-eye {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #222;
+      border-radius: 50%;
+      top: 12px;
+    }
+
+    .snowman-eye.left {
+      left: 12px;
+    }
+
+    .snowman-eye.right {
+      right: 12px;
+    }
+
+    .snowman-nose {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      width: 10px;
+      height: 5px;
+      background: orange;
+      border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+      transform: translateX(-50%) rotate(15deg);
+    }
+
+    .snowman-hat {
+      position: absolute;
+      left: 50%;
+      top: -8px;
+      width: 28px;
+      height: 12px;
+      background: #222;
+      border-radius: 6px 6px 2px 2px;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 8px #0008;
+    }
+
+    .snowman-hat::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: -10px;
+      width: 20px;
+      height: 10px;
+      background: #e60073;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .snowman-arm {
+      position: absolute;
+      width: 30px;
+      height: 4px;
+      background: #a0522d;
+      top: 40px;
+      border-radius: 2px;
+    }
+
+    .snowman-arm.left {
+      left: -28px;
+      transform: rotate(-20deg);
+    }
+
+    .snowman-arm.right {
+      right: -28px;
+      transform: rotate(20deg);
+    }
+
+    .snowman-btn {
+      position: absolute;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      background: #e60073;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 6px #fff;
+    }
+
+    .snowman-btn.btn1 {
+      top: 30px;
+    }
+
+    .snowman-btn.btn2 {
+      top: 42px;
+    }
+
+    .snowman-btn.btn3 {
+      top: 54px;
+    }
+
+    .elf {
+      position: absolute;
+      left: 60vw;
+      bottom: 120px;
+      width: 60px;
+      height: 90px;
+      z-index: 7;
+      animation: elf-pop 1.2s cubic-bezier(.68, -0.55, .27, 1.55) 1;
+      filter: drop-shadow(0 8px 24px #0006);
+    }
+
+    @keyframes elf-pop {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .elf-body {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 40px;
+      height: 50px;
+      background: #00e676;
+      border-radius: 20px 20px 16px 16px/30px 30px 20px 20px;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px #00e67680;
+    }
+
+    .elf-head {
+      position: absolute;
+      left: 50%;
+      bottom: 44px;
+      width: 28px;
+      height: 28px;
+      background: #ffe0b2;
+      border-radius: 50%;
+      border: 2px solid #b97a56;
+      transform: translateX(-50%);
+    }
+
+    .elf-hat {
+      position: absolute;
+      left: 50%;
+      bottom: 68px;
+      width: 32px;
+      height: 18px;
+      background: #e60073;
+      border-radius: 16px 16px 0 0;
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px #e60073a0;
+    }
+
+    .elf-ear.left,
+    .elf-ear.right {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      background: #ffe0b2;
+      border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+      top: 8px;
+    }
+
+    .elf-ear.left {
+      left: -8px;
+    }
+
+    .elf-ear.right {
+      right: -8px;
+    }
+
+    .elf-eye {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #222;
+      border-radius: 50%;
+      top: 12px;
+    }
+
+    .elf-eye.left {
+      left: 8px;
+    }
+
+    .elf-eye.right {
+      right: 8px;
+    }
+
+    .elf-mouth {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      width: 10px;
+      height: 4px;
+      border-radius: 0 0 8px 8px;
+      background: #b97a56;
+      transform: translateX(-50%);
+    }
+
+    /* Hiệu ứng tuyết động */
+    .snowflake-anim {
+      position: fixed;
+      top: -2em;
+      color: #fff;
+      pointer-events: none;
+      z-index: 9999;
+      animation: snow-fall linear forwards;
+      opacity: 0.8;
+      font-size: 1.2em;
+      filter: drop-shadow(0 0 8px #fff);
+    }
+
+    @keyframes snow-fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+
+    .santa-sleigh {
+      position: absolute;
+      top: 60px;
+      right: -340px;
+      width: 340px;
+      height: 70px;
+      z-index: 20;
+      animation: sleigh-move-left 10s linear infinite;
+      pointer-events: none;
+      filter: drop-shadow(0 0 32px #ffd700cc) brightness(1.3) hue-rotate(10deg);
+    }
+
+    @keyframes sleigh-move-left {
+      0% {
+        right: -340px;
+        filter: drop-shadow(0 0 24px #fff8) brightness(1.2) hue-rotate(0deg);
+      }
+
+      50% {
+        filter: drop-shadow(0 0 48px #ffd700) brightness(1.5) hue-rotate(30deg);
+      }
+
+      100% {
+        right: 110vw;
+        filter: drop-shadow(0 0 24px #fff8) brightness(1.2) hue-rotate(0deg);
+      }
+    }
+
+    .sleigh-glow {
+      position: absolute;
+      left: 60px;
+      top: 30px;
+      width: 200px;
+      height: 30px;
+      background: radial-gradient(circle, #fff8 0%, #ffd70044 60%, transparent 100%);
+      border-radius: 50%;
+      filter: blur(8px) brightness(1.5);
+      opacity: 0.7;
+      pointer-events: none;
+      animation: sleigh-glow-anim 2s infinite alternate;
+    }
+
+    @keyframes sleigh-glow-anim {
+      from {
+        opacity: 0.7;
+        filter: blur(8px) brightness(1.5);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(16px) brightness(2);
+      }
+    }
+
+    /* Hiệu ứng sao băng và sao lấp lánh */
+    #sky-stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: star-twinkle 2s infinite alternate;
+    }
+
+    @keyframes star-twinkle {
+      from {
+        opacity: 0.5;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #shooting-star {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .shooting {
+      position: absolute;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, #fff, #ffd70000);
+      border-radius: 2px;
+      opacity: 0.8;
+      animation: shooting-star-anim 1.2s linear;
+    }
+
+    @keyframes shooting-star-anim {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scaleX(0.5);
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(80px) scaleX(1.2);
+      }
+    }
+
+    /* Chim nhỏ đậu trên cây */
+    .bird-on-tree {
+      position: absolute;
+      left: 23%;
+      bottom: 260px;
+      z-index: 12;
+      animation: bird-bob 2.2s infinite alternate;
+      filter: drop-shadow(0 0 8px #fff8) brightness(1.1);
+    }
+
+    @keyframes bird-bob {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        transform: translateY(-8px) scale(1.05);
+      }
+    }
+
+    /* Cáo tuyết chạy */
+    .fox-running {
+      position: absolute;
+      left: 8%;
+      bottom: 110px;
+      z-index: 10;
+      animation: fox-run 3.5s linear infinite;
+      filter: drop-shadow(0 0 8px #fff8) brightness(1.1);
+    }
+
+    @keyframes fox-run {
+      0% {
+        left: 8%;
+      }
+
+      50% {
+        left: 32%;
+      }
+
+      100% {
+        left: 8%;
+      }
+    }
+
+    /* Người tuyết nhỏ nhảy */
+    .mini-snowman {
+      position: absolute;
+      left: 60%;
+      bottom: 120px;
+      z-index: 11;
+      animation: snowman-jump 1.4s cubic-bezier(.5, 1.8, .5, 1) infinite alternate;
+      filter: drop-shadow(0 0 8px #fff8) brightness(1.1);
+    }
+
+    @keyframes snowman-jump {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        transform: translateY(-18px) scale(1.08);
+      }
+    }
+
+    /* Cây bụi nhỏ rung lắc */
+    .bush-shake {
+      position: absolute;
+      left: 80%;
+      bottom: 110px;
+      z-index: 9;
+      animation: bush-shake 2.2s infinite alternate;
+      filter: drop-shadow(0 0 8px #fff8) brightness(1.1);
+    }
+
+    @keyframes bush-shake {
+      0% {
+        transform: rotate(-2deg) scale(1);
+      }
+
+      100% {
+        transform: rotate(3deg) scale(1.04);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+
+      .tree,
+      .tree2 {
+        width: clamp(40px, 18vw, 80px);
+        height: clamp(60px, 28vw, 120px);
+      }
+
+      .tree .star {
+        font-size: clamp(14px, 3vw, 24px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .merry-christmas {
+        font-size: 2rem;
+      }
+
+      .scene {
+        min-height: 40vh;
+      }
+
+      .ground {
+        height: 60px;
+      }
+
+      .house {
+        width: 80px;
+        height: 50px;
+      }
+
+      .gift {
+        width: 30px;
+        height: 30px;
+      }
+
+      .snowman,
+      .elf {
+        width: 40px;
+        height: 60px;
+      }
+
+      .tree,
+      .tree2 {
+        width: clamp(28px, 24vw, 50px);
+        height: clamp(40px, 36vw, 70px);
+      }
+
+      .tree .star {
+        font-size: clamp(10px, 4vw, 16px);
+      }
+    }
+
+    /* Nút nhạc nổi bật */
+    .music-toggle {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #fff 60%, #e60073 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 24px 6px #ffd700, 0 0 12px #e60073a0;
+      border: 3px solid #ffd700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      transition: box-shadow 0.3s, transform 0.2s;
+      outline: none;
+      animation: music-glow 2s infinite alternate;
+    }
+
+    .music-toggle:hover,
+    .music-toggle:focus {
+      box-shadow: 0 0 40px 12px #e60073, 0 0 32px #ffd700;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .music-toggle.active {
+      background: linear-gradient(135deg, #ffd700 60%, #e60073 100%);
+      box-shadow: 0 0 48px 16px #ffd700, 0 0 32px #e60073a0;
+      animation: music-glow-on 1.2s infinite alternate;
+    }
+
+    @keyframes music-glow {
+      0% {
+        box-shadow: 0 0 24px 6px #ffd700, 0 0 12px #e60073a0;
+      }
+
+      100% {
+        box-shadow: 0 0 40px 16px #ffd700, 0 0 32px #e60073a0;
+      }
+    }
+
+    @keyframes music-glow-on {
+      0% {
+        box-shadow: 0 0 48px 16px #ffd700, 0 0 32px #e60073a0;
+      }
+
+      100% {
+        box-shadow: 0 0 64px 24px #e60073, 0 0 48px #ffd700;
+      }
+    }
+
+    .music-toggle svg {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 0 8px #ffd70080);
+      transition: filter 0.3s, transform 0.2s;
+      animation: music-icon-bounce 1.2s infinite alternate;
+    }
+
+    .music-toggle.active svg {
+      filter: drop-shadow(0 0 16px #ffd700) hue-rotate(30deg);
+      transform: scale(1.12) rotate(-8deg);
+      animation: music-icon-bounce-on 0.8s infinite alternate;
+    }
+
+    @keyframes music-icon-bounce {
+      0% {
+        transform: scale(1) rotate(-2deg);
+      }
+
+      100% {
+        transform: scale(1.08) rotate(2deg);
+      }
+    }
+
+    @keyframes music-icon-bounce-on {
+      0% {
+        transform: scale(1.12) rotate(-8deg);
+      }
+
+      100% {
+        transform: scale(1.2) rotate(8deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div align="center" style="padding-top:350px;" class="fond">
-
-        <div class="contener_home_one" >
-          <!--El contenedor de la casa, las montañas y los arboles y los lutz(muñeco)  -->
-          <div class="fireplace">&nbsp;</div>
-          <div class="fireplace_top">&nbsp;</div>
-          <div class="triangle">&nbsp;</div>
-          <div class="parallelogram">&nbsp;</div>
-          <div class="door">&nbsp;</div>
-          <div class="window_one">&nbsp;</div>
-          <div class="window_two">&nbsp;</div>
-          <div class="home_base" >&nbsp;</div>
-
-          <!--segunda casa -->
-          <div class="home_base"style="left:-380px;">&nbsp;</div>
-          <div class="home_base" style="left:-380px;" >&nbsp;</div>
-          <div class="window_two" style="left:-300px;">&nbsp;</div>
-          <div class="window_one" style="left:-360px;">&nbsp;</div>
-          <div class="door" style="left:-330px;">&nbsp;</div>
-          <div class="triangle"style="left:-385px;">&nbsp;</div>
-          <div class="parallelogram" style="left:-360px;">&nbsp;</div>
-
-
-          <div class="christmas_tree"></div>
-          <div class="christmas_tree" style="left:-120px;"></div>
-          <div class="christmas_tree_dos" style="left:-150px;"></div>
-          <div class="christmas_tree_dos" style="left:-180px;"></div>
-          <div class="christmas_tree" style="left:-210px;"></div>
-          <div class="christmas_tree" style="left:-440px;"></div>
-          <div class="christmas_tree_dos" style="left:-470px;"></div>
-          <div class="christmas_tree_dos" style="left:-500px;"></div>
-          <div class="christmas_tree" style="left:-520px;"></div>
-          <div class="christmas_tree_dos"></div>
-          <div class="christmas_tree_dos" style="left:225px;"></div>
-          <div class="mountain_one"><div class="sub_mountain_one">&nbsp;</div></div>
-          <div class="mountain_one_dos"><div class="sub_mountain_one_dos">&nbsp;</div></div>
-          <div class="mountain_one_tres"><div class="sub_mountain_one_tres">&nbsp;</div></div>
-          <div class="mountain_two"><div class="sub_mountain_two">&nbsp;</div></div>
-          <div class="mountain_tres"><div class="sub_mountain_tres">&nbsp;</div></div>
-          <div class="mountain_cuatro"><div class="sub_mountain_cuatro">&nbsp;</div></div>
-
-          <div class="lutz">
-            <div class="lutin_pom">&nbsp;</div>
-            <div class="lutin_top">&nbsp;</div>
-            <div class="lutin_head">&nbsp;</div>
-            <div class="lutin_arm1">&nbsp;</div>
-            <div class="lutin_arm2">&nbsp;</div>
-            <div class="lutin_body">&nbsp;</div>
-            <div class="lutin_jb1">&nbsp;</div>
-            <div class="lutin_jb2">&nbsp;</div>
-          </div>
-          <div class="lutz" style="left:-175px;" id="scaled">
-            <div class="lutin_pom">&nbsp;</div>
-            <div class="lutin_top">&nbsp;</div>
-            <div class="lutin_head">&nbsp;</div>
-            <div class="lutin_arm1">&nbsp;</div>
-            <div class="lutin_arm2">&nbsp;</div>
-            <div class="lutin_body">&nbsp;</div>
-            <div class="lutin_jb1">&nbsp;</div>
-            <div class="lutin_jb2">&nbsp;</div>
-          </div>
-          <div class="lutz" style="left:-150px;" id="scaled">
-            <div class="lutin_pom">&nbsp;</div>
-            <div class="lutin_top">&nbsp;</div>
-            <div class="lutin_head">&nbsp;</div>
-            <div class="lutin_arm1">&nbsp;</div>
-            <div class="lutin_arm2">&nbsp;</div>
-            <div class="lutin_body">&nbsp;</div>
-            <div class="lutin_jb1">&nbsp;</div>
-            <div class="lutin_jb2">&nbsp;</div>
-          </div>
-          <div class="lutz" style="left:-125px;" id="scaled">
-            <div class="lutin_pom">&nbsp;</div>
-            <div class="lutin_top">&nbsp;</div>
-            <div class="lutin_head">&nbsp;</div>
-            <div class="lutin_arm1">&nbsp;</div>
-            <div class="lutin_arm2">&nbsp;</div>
-            <div class="lutin_body">&nbsp;</div>
-            <div class="lutin_jb1">&nbsp;</div>
-            <div class="lutin_jb2">&nbsp;</div>
-          </div>
-        </div>
-        <div class="contener_snow">
-          <div class="snowflakes">
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-            <div class="snowflake">&nbsp;</div>
-          </div>
-          <div class="container" id="scaled2">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="350" height="400">
-          <path fill="transparent" d="M0 0h350v400H0z"/>
-          <!--<g fill="#CCE6F4" class="cloud">
-            <path d="M63 53h65a13 13 0 0113 13 13 13 0 01-13 13H61a12 12 0 01-12-12 14 14 0 0114-14z"/>
-            <path d="M83 26a19 19 0 0119 19v1a19 19 0 01-19 19h-2a18 18 0 01-18-18v-1a20 20 0 0120-20z"/>
-            <path d="M113 38a14 14 0 0114 14v1a14 14 0 01-14 14h-2a13 13 0 01-13-13v-1a15 15 0 0115-15z"/>
-          </g>
-          <g fill="#CCE6F4" class="cloud">
-            <path d="M202.936 343.907h52.943a10.589 10.589 0 0110.588 10.589 10.589 10.589 0 01-10.588 10.588h-54.572a9.774 9.774 0 01-9.774-9.774 11.403 11.403 0 0111.403-11.403z"/>
-            <path d="M219.226 321.916a15.476 15.476 0 0115.476 15.475v.815a15.476 15.476 0 01-15.476 15.475h-1.629a14.661 14.661 0 01-14.661-14.66v-.815a16.29 16.29 0 0116.29-16.29z"/>
-            <path d="M243.661 331.69a11.403 11.403 0 0111.403 11.403v.814a11.403 11.403 0 01-11.403 11.403h-1.629a10.589 10.589 0 01-10.588-10.588v-.815a12.218 12.218 0 0112.217-12.217z"/>
-          </g>
-          <g fill="#CCE6F4" class="cloud">
-            <path d="M12.936 245.907h52.943a10.589 10.589 0 0110.588 10.589 10.589 10.589 0 01-10.588 10.588H11.307a9.774 9.774 0 01-9.774-9.774 11.403 11.403 0 0111.403-11.403z"/>
-            <path d="M29.226 223.916a15.476 15.476 0 0115.476 15.475v.815a15.476 15.476 0 01-15.476 15.475h-1.629a14.661 14.661 0 01-14.661-14.66v-.815a16.29 16.29 0 0116.29-16.29z"/>
-            <path d="M53.661 233.69a11.403 11.403 0 0111.403 11.403v.814a11.403 11.403 0 01-11.403 11.403h-1.629a10.589 10.589 0 01-10.588-10.588v-.815A12.218 12.218 0 0153.66 233.69z"/>
-          </g>
-          <g fill="#CCE6F4" class="cloud">
-            <path d="M246.79835,143.07881h75.40328a15.04912,15.04912,0,0,1,15.04912,15.04912v0a15.0491,15.0491,0,0,1-15.0491,15.0491H244.79837a14.04912,14.04912,0,0,1-14.04912-14.04912v0A16.0491,16.0491,0,0,1,246.79835,143.07881Z"/>
-            <path d="M269.00509,111.82294h2.04917a21.04912,21.04912,0,0,1,21.04912,21.04912v3.04917a21.04909,21.04909,0,0,1-21.04909,21.04909h-4.04917A20.04912,20.04912,0,0,1,246.956,136.9212V133.872a22.04909,22.04909,0,0,1,22.04909-22.04909Z" />
-            <path d="M304.522,125.71444h.47291A16.04912,16.04912,0,0,1,321.044,141.76356v1.47291a16.0491,16.0491,0,0,1-16.0491,16.0491H302.522a15.04912,15.04912,0,0,1-15.04912-15.04912v-1.47291A17.0491,17.0491,0,0,1,304.522,125.71444Z"/>
-          </g>-->
-          <g class="plane">
-            <rect x="215.747" y="157.738" width="25.511" height="43.645" rx="12.755" ry="12.755" fill="#711723"/>
-            <path fill="#f40009" d="M166.263 185.401h74.995v31.965h-74.995zM166.263 217.366h74.995a31.965 31.965 0 01-31.965 31.965h-43.03v-31.965z"/>
-            <g class="hand">
-              <rect x="136.437" y="152.836" width="26.365" height="9.113" rx="4.557" ry="4.557" transform="rotate(-120 149.62 157.393)" fill="#f6bfb1"/>
-              <path fill="#f40009" d="M144.906 163.746l11.978-6.916 20.407 35.346-11.978 6.916z"/>
-              <rect x="139.226" y="154.214" width="20.172" height="6.973" rx="3.486" ry="3.486" transform="rotate(-30 149.312 157.7)" fill="#e6e6e6"/>
-            </g>
-            <path fill="#f6bfb1" d="M171.488 155.28h37.805v23.974h-37.805z"/>
-            <path d="M165.956 185.093v64.545h-12.602v-.024c-.406.015-.818.024-1.23.024a32.272 32.272 0 110-64.545c.412 0 .824.01 1.23.025v-.025z" fill="#711723"/>
-            <path fill="#300403" d="M161.345 185.093h4.918v64.545h-4.918z"/>
-            <path d="M113.376 210.296v11.987h-2.34v-.004a6.053 6.053 0 01-.23.004 5.993 5.993 0 110-11.987c.077 0 .154.002.23.005v-.005z" fill="#f40009"/>
-            <g fill="#300403">
-              <circle cx="155.505" cy="244.106" r="2.459"/>
-              <circle cx="155.505" cy="190.933" r="2.459"/>
-              <circle cx="155.505" cy="208.452" r="2.459"/>
-              <circle cx="155.505" cy="226.586" r="2.459"/>
-            </g>
-            <rect class="blade" x="113.244" y="167.266" width="6.762" height="98.354" rx="3.381" ry="3.381" fill="#300403"/>
-            <path d="M195.154 211.526h34.732a4.918 4.918 0 014.917 4.918 4.918 4.918 0 01-4.917 4.917h-34.732a4.918 4.918 0 01-4.917-4.917 4.918 4.918 0 014.917-4.918z" fill="#711723"/>
-            <g fill="#fff">
-              <rect x="174.148" y="171.282" width="15.925" height="40.192" rx="7.963" ry="7.963"/>
-              <rect x="188.824" y="171.282" width="15.925" height="40.192" rx="7.963" ry="7.963"/>
-              <rect x="180.862" y="167.691" width="15.925" height="51.21" rx="7.963" ry="7.963" transform="rotate(-90 188.824 193.296)"/>
-              <path d="M161.55 180.896a7.963 7.963 0 016.42-9.252l20.066-3.625a7.963 7.963 0 019.251 6.42 7.963 7.963 0 01-6.42 9.251l-20.066 3.626a7.963 7.963 0 01-9.251-6.42z"/>
-              <path d="M183.122 174.543a7.963 7.963 0 019.251-6.42l19.491 3.521a7.963 7.963 0 016.42 9.252 7.963 7.963 0 01-9.251 6.42l-19.491-3.522a7.963 7.963 0 01-6.42-9.25z"/>
-            </g>
-            <rect x="167.185" y="151.899" width="6.455" height="27.355" rx="3.227" ry="3.227" fill="#711723"/>
-            <rect x="207.449" y="151.899" width="6.455" height="27.355" rx="3.227" ry="3.227" fill="#711723"/>
-            <circle cx="190.083" cy="165.883" r="3.842" fill="#e76160"/>
-            <circle cx="190.083" cy="179.868" r="6.454"/>
-            <path fill="#f40009" d="M167.185 148.21h46.718v7.069h-46.718zM213.903 145.137h-46.718a10.757 10.757 0 0110.757-10.758h25.204a10.757 10.757 0 0110.757 10.758z"/>
-            <path fill="#711723" d="M167.185 143.907h46.718v4.303h-46.718z"/>
-            <circle cx="181.016" cy="146.059" r="7.377" fill="#711723"/>
-            <circle cx="181.016" cy="146.059" r="5.62" fill="#300403"/>
-            <circle cx="200.072" cy="146.059" r="7.377" fill="#711723"/>
-            <circle cx="200.072" cy="146.059" r="5.62" fill="#300403"/>
-            <path d="M176.713 165.422s2.459-3.995 6.454 0M197.306 165.422s2.459-3.995 6.454 0" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="1.844"/>
-          </g>
-        </svg>
+  <audio id="bg-music" src="nhacnoel.mp3" loop autoplay></audio>
+  <button id="toggle-music" class="music-toggle" aria-label="Toggle Music">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 3v10.55a4 4 0 1 0 2 0V3h4V1h-6v2h-4v2h4z" />
+    </svg>
+  </button>
+  <h1 class="merry-christmas">Merry Christmas!</h1>
+  <div id="sky-stars"></div>
+  <div id="shooting-star"></div>
+  <div class="scene">
+    <div class="tree">
+      <div class="star">★</div>
+      <div class="bauble bauble1"></div>
+      <div class="bauble bauble2"></div>
+      <div class="bauble bauble3"></div>
+      <div class="bauble bauble4"></div>
+      <svg width="90" height="140">
+        <polygon points="45,10 10,90 80,90" fill="#388e3c" />
+        <polygon points="45,40 18,100 72,100" fill="#43a047" />
+        <rect x="38" y="100" width="14" height="30" fill="#8d5524" />
+      </svg>
+    </div>
+    <div class="tree tree2">
+      <div class="star">★</div>
+      <div class="bauble bauble1"></div>
+      <div class="bauble bauble2"></div>
+      <div class="bauble bauble3"></div>
+      <div class="bauble bauble4"></div>
+      <svg width="90" height="140">
+        <polygon points="45,10 10,90 80,90" fill="#388e3c" />
+        <polygon points="45,40 18,100 72,100" fill="#43a047" />
+        <rect x="38" y="100" width="14" height="30" fill="#8d5524" />
+      </svg>
+    </div>
+    <div class="house">
+      <div class="house-roof"></div>
+      <div class="house-snow"></div>
+      <div class="house-chimney"></div>
+      <div class="house-smoke">
+        <div class="smoke smoke1"></div>
+        <div class="smoke smoke2"></div>
+        <div class="smoke smoke3"></div>
       </div>
-      <snowman>
-      	<div class="body" id="scaled3" style="left:140px";>
-      		<div class="head"></div>
-      		<div class="hat"></div>
-      		<div class="scarf"></div>
-          <div class="buttons"></div>
-      		<div class="hands">
-      			<div class="right-hand"></div>
-      			<div class="left-hand"></div>
-      		</div>
-      		<div class="shadow"></div>
-      	</div>
-      </snowman>
-
-        </div>
-
-        <script src="index.js"></script>
+      <div class="house-body"></div>
+      <div class="house-door"></div>
+      <div class="house-window"></div>
+      <div class="house-window house-window2"></div>
+    </div>
+    <div class="santa-sleigh">
+      <svg width="340" height="80" viewBox="0 0 340 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tuần lộc 1 -->
+        <g class="reindeer">
+          <ellipse cx="40" cy="50" rx="18" ry="10" fill="#a0522d" />
+          <ellipse cx="25" cy="42" rx="6" ry="6" fill="#a0522d" />
+          <ellipse cx="23" cy="41" rx="1.5" ry="1.5" fill="#000" />
+          <ellipse cx="22" cy="38" rx="2.5" ry="2.5" fill="#fff" />
+          <rect x="19" y="32" width="2" height="8" rx="1" fill="#fff" transform="rotate(-20 19 32)" />
+          <rect x="29" y="32" width="2" height="8" rx="1" fill="#fff" transform="rotate(20 29 32)" />
+          <!-- Sừng -->
+          <path d="M18 32 Q12 25 22 28" stroke="#fff" stroke-width="1.5" fill="none" />
+          <path d="M32 32 Q38 25 28 28" stroke="#fff" stroke-width="1.5" fill="none" />
+          <!-- Mũi đỏ -->
+          <ellipse cx="21" cy="44" rx="2" ry="2" fill="#e60000" />
+        </g>
+        <!-- Tuần lộc 2 -->
+        <g class="reindeer">
+          <ellipse cx="90" cy="46" rx="18" ry="10" fill="#a0522d" />
+          <ellipse cx="75" cy="38" rx="6" ry="6" fill="#a0522d" />
+          <ellipse cx="73" cy="37" rx="1.5" ry="1.5" fill="#000" />
+          <ellipse cx="72" cy="34" rx="2.5" ry="2.5" fill="#fff" />
+          <rect x="69" y="28" width="2" height="8" rx="1" fill="#fff" transform="rotate(-20 69 28)" />
+          <rect x="79" y="28" width="2" height="8" rx="1" fill="#fff" transform="rotate(20 79 28)" />
+          <path d="M68 28 Q62 21 72 24" stroke="#fff" stroke-width="1.5" fill="none" />
+          <path d="M82 28 Q88 21 78 24" stroke="#fff" stroke-width="1.5" fill="none" />
+        </g>
+        <!-- Tuần lộc 3 -->
+        <g class="reindeer">
+          <ellipse cx="140" cy="42" rx="18" ry="10" fill="#a0522d" />
+          <ellipse cx="125" cy="34" rx="6" ry="6" fill="#a0522d" />
+          <ellipse cx="123" cy="33" rx="1.5" ry="1.5" fill="#000" />
+          <ellipse cx="122" cy="30" rx="2.5" ry="2.5" fill="#fff" />
+          <rect x="119" y="24" width="2" height="8" rx="1" fill="#fff" transform="rotate(-20 119 24)" />
+          <rect x="129" y="24" width="2" height="8" rx="1" fill="#fff" transform="rotate(20 129 24)" />
+          <path d="M118 24 Q112 17 122 20" stroke="#fff" stroke-width="1.5" fill="none" />
+          <path d="M132 24 Q138 17 128 20" stroke="#fff" stroke-width="1.5" fill="none" />
+        </g>
+        <!-- Dây kéo -->
+        <polyline points="58,50 75,46 108,42 125,38 158,34 175,30 210,28" stroke="#fff" stroke-width="2" fill="none" />
+        <!-- Xe trượt -->
+        <g class="sleigh-body">
+          <rect x="210" y="28" width="60" height="20" rx="10" fill="#b97a56" />
+          <ellipse cx="240" cy="54" rx="30" ry="10" fill="#8d5524" />
+          <rect x="220" y="12" width="40" height="20" rx="10" fill="#e60073" />
+        </g>
+        <!-- Ông già Noel rõ nét -->
+        <g class="santa">
+          <!-- Thân -->
+          <ellipse cx="250" cy="22" rx="10" ry="13" fill="#fff" />
+          <!-- Đầu -->
+          <ellipse cx="250" cy="12" rx="8" ry="8" fill="#ffe0b2" />
+          <!-- Mũ -->
+          <ellipse cx="250" cy="3" rx="7" ry="7" fill="#e60073" />
+          <ellipse cx="257" cy="-2" rx="2.5" ry="2.5" fill="#fff" />
+          <!-- Mắt -->
+          <ellipse cx="247" cy="12" rx="1.2" ry="1.2" fill="#000" />
+          <ellipse cx="253" cy="12" rx="1.2" ry="1.2" fill="#000" />
+          <!-- Miệng -->
+          <ellipse cx="250" cy="17" rx="2" ry="1" fill="#b97a56" />
+          <!-- Râu -->
+          <ellipse cx="250" cy="19" rx="5" ry="2.5" fill="#fff" />
+          <!-- Tay -->
+          <rect x="258" y="20" width="10" height="4" rx="2" fill="#ffe0b2" transform="rotate(20 258 20)" />
+          <rect x="242" y="20" width="10" height="4" rx="2" fill="#ffe0b2" transform="rotate(-20 242 20)" />
+          <!-- Bao quà -->
+          <ellipse cx="262" cy="28" rx="6" ry="8" fill="#ffd700" />
+        </g>
+      </svg>
+      <div class="sleigh-glow"></div>
+    </div>
+    <div class="gift">
+      <div class="gift-lid"></div>
+    </div>
+    <div class="snowman">
+      <div class="snowman-body"></div>
+      <div class="snowman-head">
+        <div class="snowman-eye left"></div>
+        <div class="snowman-eye right"></div>
+        <div class="snowman-nose"></div>
+        <div class="snowman-hat"></div>
+      </div>
+      <div class="snowman-arm left"></div>
+      <div class="snowman-arm right"></div>
+      <div class="snowman-btn btn1"></div>
+      <div class="snowman-btn btn2"></div>
+      <div class="snowman-btn btn3"></div>
+    </div>
+    <div class="elf">
+      <div class="elf-body"></div>
+      <div class="elf-head">
+        <div class="elf-ear left"></div>
+        <div class="elf-ear right"></div>
+        <div class="elf-eye left"></div>
+        <div class="elf-eye right"></div>
+        <div class="elf-mouth"></div>
+      </div>
+      <div class="elf-hat"></div>
+    </div>
+    <!-- Chim nhỏ đậu trên cây -->
+    <div class="bird-on-tree">
+      <svg width="38" height="28" viewBox="0 0 38 28">
+        <ellipse cx="18" cy="18" rx="12" ry="8" fill="#3b3b3b" />
+        <ellipse cx="28" cy="18" rx="7" ry="5" fill="#e6b800" />
+        <ellipse cx="30" cy="15" rx="3" ry="2" fill="#fff" />
+        <ellipse cx="31" cy="15" rx="1.2" ry="1.2" fill="#222" />
+        <polygon points="35,18 38,19 35,21" fill="#ff6600" />
+        <ellipse cx="15" cy="25" rx="2" ry="1.2" fill="#222" />
+      </svg>
+    </div>
+    <!-- Cáo tuyết chạy -->
+    <div class="fox-running">
+      <svg width="60" height="32" viewBox="0 0 60 32">
+        <ellipse cx="30" cy="22" rx="24" ry="8" fill="#fff" opacity="0.3" />
+        <ellipse cx="30" cy="18" rx="18" ry="8" fill="#e67e22" />
+        <ellipse cx="50" cy="18" rx="7" ry="4" fill="#fff" />
+        <ellipse cx="12" cy="18" rx="5" ry="3" fill="#fff" />
+        <ellipse cx="54" cy="15" rx="2" ry="1.2" fill="#222" />
+        <ellipse cx="10" cy="15" rx="1.2" ry="1.2" fill="#222" />
+        <ellipse cx="30" cy="28" rx="2" ry="1.2" fill="#222" />
+      </svg>
+    </div>
+    <!-- Người tuyết nhỏ nhảy -->
+    <div class="mini-snowman">
+      <svg width="32" height="38" viewBox="0 0 32 38">
+        <ellipse cx="16" cy="30" rx="12" ry="8" fill="#fff" />
+        <ellipse cx="16" cy="18" rx="8" ry="6" fill="#fff" />
+        <ellipse cx="16" cy="8" rx="5" ry="4" fill="#fff" />
+        <ellipse cx="16" cy="8" rx="1.2" ry="1.2" fill="#222" />
+        <ellipse cx="12" cy="8" rx="1.2" ry="1.2" fill="#222" />
+        <ellipse cx="16" cy="13" rx="2" ry="1" fill="#e67e22" />
+        <rect x="10" y="2" width="12" height="6" rx="2" fill="#222" />
+      </svg>
+    </div>
+    <!-- Cây bụi nhỏ rung lắc -->
+    <div class="bush-shake">
+      <svg width="38" height="24" viewBox="0 0 38 24">
+        <ellipse cx="10" cy="18" rx="8" ry="6" fill="#2ecc40" />
+        <ellipse cx="20" cy="16" rx="10" ry="8" fill="#27ae60" />
+        <ellipse cx="30" cy="18" rx="7" ry="5" fill="#2ecc40" />
+      </svg>
+    </div>
+    <div class="ground"></div>
+  </div>
+  <script>
+    // Hiệu ứng tuyết động
+    function createSnowFlake() {
+      const snow_flake = document.createElement('div');
+      snow_flake.className = 'snowflake-anim';
+      snow_flake.style.left = Math.random() * 100 + 'vw';
+      snow_flake.style.animationDuration = (2 + Math.random() * 3) + 's';
+      snow_flake.style.opacity = Math.random();
+      snow_flake.style.fontSize = (12 + Math.random() * 16) + 'px';
+      snow_flake.innerHTML = '❄';
+      document.body.appendChild(snow_flake);
+      setTimeout(() => { snow_flake.remove(); }, 5000);
+    }
+    setInterval(createSnowFlake, 180);
+    // Nút bật/tắt nhạc
+    const music = document.getElementById('bg-music');
+    const btn = document.getElementById('toggle-music');
+    btn.onclick = function () {
+      if (music.paused) {
+        music.play();
+        btn.classList.add('active');
+      } else {
+        music.pause();
+        btn.classList.remove('active');
+      }
+    };
+    // Tạo sao lấp lánh
+    const sky = document.getElementById('sky-stars');
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 60 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDelay = (Math.random() * 2) + 's';
+      sky.appendChild(star);
+    }
+    // Sao băng
+    function createShootingStar() {
+      const shooting = document.createElement('div');
+      shooting.className = 'shooting';
+      shooting.style.top = (Math.random() * 40 + 10) + 'vh';
+      shooting.style.left = (Math.random() * 60 + 20) + 'vw';
+      document.getElementById('shooting-star').appendChild(shooting);
+      setTimeout(() => shooting.remove(), 1200);
+    }
+  </script>
 </body>
+
 </html>
